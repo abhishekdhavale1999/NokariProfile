@@ -76,8 +76,7 @@ def main():
     urls_text = st.text_area("Enter Profile URLs (one per line):", height=200)
     urls = urls_text.split("\n") if urls_text else []
 
-    username = st.text_input("Nokari Username:")
-    password = st.text_input("Nokari Password:", type="password")
+    
 
     if st.button("Login and Scrape"):
         if scraper.login_to_nokari(username, password):
