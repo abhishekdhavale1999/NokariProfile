@@ -71,7 +71,7 @@ class LinkedInScraper:
 def main():
     scraper = LinkedInScraper()
 
-    st.title("LinkedIn Profile Scraper")
+    st.title("naukri Profile Scraper")
 
     urls_text = st.text_area("Enter Profile URLs (one per line):", height=200)
     urls = urls_text.split("\n") if urls_text else []
