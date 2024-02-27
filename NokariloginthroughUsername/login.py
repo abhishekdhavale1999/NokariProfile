@@ -15,7 +15,7 @@ class LinkedInScraper:
         self.user_agent = UserAgent()
         self.session = requests.Session()
 
-    def login_to_naukri(self, username, password):
+    def login_to_nokari(self, username, password):
         try:
             login_url = "https://www.naukri.com/recruit/login"
             headers = {'User-Agent': self.user_agent.random}
@@ -71,12 +71,21 @@ class LinkedInScraper:
 def main():
     scraper = LinkedInScraper()
 
-    st.title("Naukri Profile Scraper")
+    st.title("Naukri Profile Scrapper")
 
     urls_text = st.text_area("Enter Profile URLs (one per line):", height=200)
     urls = urls_text.split("\n") if urls_text else []
 
- 
+    username = st.text_input("Nokari Username:")
+    password = st.text_input("Nokari Password:", type="password")
+
+    if st.button("Login and Scrape"):
+        if scraper.login_to_nokari(username, password):
+            scraped_data = scraper.scrape_profiles(urls)
+            if scraped_data:
+                st.success("Profiles scraped successfully.")
+            else:
+                st.warning("Failed to scrape profiles.")
 
     if st.button("Download CSV"):
         scraper.download_csv()
